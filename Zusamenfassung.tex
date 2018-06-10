@@ -1,0 +1,322 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+ 
+\documentclass[a4paper, 10pt]{article}
+\usepackage[a4paper,left=2.5cm,right=2.5cm,top=2.5cm,bottom=3.5cm]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+ 
+\setlength{\oddsidemargin}{0cm}
+\setlength{\evensidemargin}{0cm}
+\setlength{\topmargin}{0cm}
+  \setlength{\parskip}{0.5mm plus2mm minus2mm}
+ 
+\begin{document}
+
+\iffalse
+
+\paragraph{Chinesischer Restsatz $n$ Grad}
+\begin{align*}
+x & = a_1 \quad mod ( m_1 )\\ 
+& = a_2 \quad mod ( m_2 )\\
+& = a_3 \quad mod ( m_3 )
+\end{align*}
+\begin{equation}
+M_1  = m_2 * m_3 \quad M_2 = m_2 * m_3 \quad M_3 = m_1 * m_2 \\
+\end{equation}
+\begin{equation}
+M = m_1 * m_2 * m_3
+\end{equation}
+\begin{equation}
+y_i = multInv \quad M_i mod (m_i) \rightarrow ggT(m_i, M_i) = 1
+\end{equation}
+\begin{equation}
+x = a_1*M_1*y_1 + a_2*M_2*y_2+a_3*M_3*y_3  \quad mod(M)
+\end{equation}
+
+\paragraph{Chinesischer Restsatz $2.$ Grad}
+
+\begin{align}
+\left.
+\begin{array}{l l}
+x \equiv a_1 \quad mod(m_1) \rightarrow x = a_1+k*m_1\\
+x \equiv a_2 \quad mod(m_2) \rightarrow x = a_2+k*m_2\\
+\end{array}
+\right\}  \quad k \in \Z\\
+a_1 - a_2 = -k_1*m_1+k_2*m_2 \quad | \quad a_1 \equiv a_2 \quad mod(ggT(m_1, m_2)) \\
+gcd(m_1, m_2) \rightarrow a*(-k)+b*(l)=d \rightarrow * ((a_1-a_2 )/ d)\\
+x = a_1 + (k) * m_1 =  \thinspace ? = a_2 + (l)* m_2  \quad | \quad mod(lcd(m_1, m_2))
+\end{align}
+
+
+\paragraph{KgV / lcd}
+
+\begin{equation}
+\frac{a*b}{ggT(a,b)}
+\end{equation}
+
+\paragraph{RSA}
+
+\begin{equation}
+d = Private key \quad e = Public Key \quad n = p * q \quad \lambda = lcd(p-1, q-1)
+\end{equation}
+\begin{align}
+d > max(p,q) \qquad ggT(d, \lambda) = 1 \qquad e = d^{-1} mod \lambda
+\end{align}
+\begin{align}
+c = [ m^e mod(n) ]  \qquad m = [ c^d mod(n) ] \\
+h = [ xyz \thickspace mod(a) ] \qquad sign = [ h^d mod(n) ]
+\end{align}
+
+\paragraph{RSA Faktorisierung von $n\quad(p, q)$} Gegeben sind d, e, n
+
+\begin{align*}
+e * d - 1 = 2^s * t \quad | \quad t \thickspace ungerade, s \in \N\\
+waehle \thickspace b: ggT(b, n) = 1 \land 1 < b \leq n-1\\
+Folge: [b^{2^i} *t] \quad  | \quad i \in \{0,...,s-1\}\\
+Es \thickspace muss \thickspace auftreten: b^{2^i}*t \neq 1 \thickspace mod(n) \land b^{2^{i+1}} \equiv 1 \thickspace mod(n)\\
+x = [b^{2^i}*t \thickspace mod(n)] \quad p = ggT(x-1, n) \quad q = ggT(x+1, n)
+\end{align*}
+
+\paragraph{p und q anhand von n}
+
+\begin{align}
+Gegeben: n \quad p*q = n \quad (p-1)(q-1)=u\\
+q = \frac{p}{n} \rightarrow (p-1)(\frac{p}{n}-1)=u \rightarrow p\\ 
+\end{align}
+
+
+
+\paragraph{Eulers Totient Function  	$\phi$}
+Anzahl Elemente die ein Inverses besitzen $\rightarrow gcd(a, b) = 1$
+
+\begin{align}
+p = prim \rightarrow \phi(p) = p-1\\
+p = prim \thickspace und \thickspace k \in \N \rightarrow \phi(p^k) = p^k-p^{(k-1)} = p^k  (1-\frac{1}{p})\\
+p = prim \thickspace und \thickspace q = prim \rightarrow \phi(p*q) = \phi(p) * \phi(q) = (p-1)(q-1)\\
+a  \thickspace und \thickspace  b  \thickspace Teilerfremd  \rightarrow \phi(a) * \phi(b)
+\end{align}
+
+
+\paragraph{Endung bei Potenz}
+Letzte n Stellen will man wissen $\rightarrow x=modulo(10^{Anzahl Stellen})$
+
+
+\paragraph{Square and Multiply}
+
+\begin{align*}
+m^e \thickspace mod(n) \quad e \rightarrow als \thickspace Summe \thickspace von \thickspace Zweierpotenzen \rightarrow 2^1 + ... + 2^w\\
+m^{1,2,4,8,16...} \rightarrow m^e = m^1 * ... * m^w\\
+\end{align*}
+
+
+\paragraph{lineare diophantische Gleichung}
+
+\begin{align}
+a > b > 0 \quad | \quad d = ggT(a,b)\\
+a * x + b * y = c \quad | \quad d|c \rightarrow hat \thickspace Loesung \quad (c = l*d)\\
+k \in \Z
+   \begin{cases}
+	x = x_0 - k * \frac{b}{d} \\
+	y = y_0 + k * \frac{a}{d}
+   \end{cases}
+\end{align}
+
+\paragraph{Kongruenzklasse}
+
+\begin{align}
+\bar{a}+\bar{b} := \overline{a+b} \quad \in \Z_m \\
+\bar{a}*\bar{b} := \overline{a*b} \quad \in \Z_m^* \\
+\Z_m \rightarrow {0...(m-1)}\\
+\Z_m^* \rightarrow {1..(m-1)}
+\end{align}
+
+\paragraph{Euler}
+Zahlen müssen teilerfremd sein, sonst kann das Theorem nicht benutzt werden.
+\begin{equation}
+ggT(b,m)=1 \leftrightarrow b^{\phi(m)} \equiv 1 \thickspace  mod(m)\\
+\end{equation}
+Ist p eine Primzahl und b eine natürliche Zahl:  m = p \quad (Fermat)\\
+Ist $b^{p-1} \neq 1$ mod $p$ dann folgt, dass $p$ keine Primzahl ist.
+\begin{equation}
+b^{p-1} = 1 \thickspace mod(p)
+\end{equation}
+\begin{align}
+x^y:z= \quad ?\\
+y \quad mod (\phi(z)) = a 
+\leftrightarrow x^a
+\end{align}
+
+\fi
+
+\paragraph{erweiterter Euklid}
+
+\begin{align}
+x * a + y * b = d \quad
+d = ggT(a,b) \rightarrow erw. Euklid (1, 0, 0, 1) \quad
+A'' = A-q*A' \quad | \quad B'' = B-q*B' 
+\end{align}
+
+\paragraph{Starke Primzahlen zu Basis b}
+
+Fermat Test erfuellt? 
+\begin{align}
+b^{n-1} \equiv 1 \mod n \quad \land \quad
+n-1 = 2^s * t \quad s \in \N \quad und  \quad t \in ungerade\\
+[b^t \mod n]=1 \lor [b^t \mod n] = n-1 \lor [b^{2t} \mod n]=n-1
+ \lor .... \lor [b^{2^{s-1}t} \mod n]=n-1
+\end{align}
+Wird der Test einmal 1 $\to$  stopp $\to$  erfüllt
+
+\paragraph{Starke Primzahlen zu Basis b auch Pseudoprimzahl zur Basis b}
+
+\begin{align}
+b^{n-1} = (b^{2^s*t}-1) = (b^t-1)(b^t+1)(b^{2*t}+1)(b^{2^2*t}+1)...(b^{2^{s-1}*t}+1)
+\end{align}
+
+\paragraph{Pseudoprimzahl}
+
+Sei n eine zusammengesetzte Zahl n heisst Pseudoprimzahl zur Basis b wenn gilt: $b^{n-1}=1 \mod n$
+Sei n eine Pseudoprimzahl zu $b_1$ und $b_2$ dann ist sie auch Pseudoprim zu den Basen $b_1*b_2$ und $b_1*b_2^{-1}$
+
+\paragraph{Miller Rabin}
+
+Gegeben ist eine ungerade Zahl n:
+\begin{align}
+n-1 = 2^s*t  \quad s \in \N \quad t= ungerade \quad \text{W\"ahlen} \quad von \quad 1< b < n-1 \label{eq:rabin2}\\
+Berechne \quad  [b^t \mod n]=(-1 \lor 1 \to (\ref{eq:rabin5})) \lor (\neq 1 \land \neq -1 \to (\ref{eq:rabin4})) \label{eq:rabin3}\\
+ [b^{2^{1}*t} \mod n], [b^{2^{2}*t} \mod n], ...., [b^{2^{s-1}*t} \mod n] = n-1 \to (\ref{eq:rabin5}), sonst \quad n \neq prim \label{eq:rabin4}\\
+\text{Falls die Anzahl der gewählten Basen $\leq 40$, gehe zu (\ref{eq:rabin2}) sonst ist n vermutlich prim} \label{eq:rabin5}
+\end{align}
+
+\paragraph{Anzahl Primzahlen zwischen n und m}
+m groessere Zahl, n kleinere Zahl
+\begin{align}
+0.91...\frac{m}{ln(m)} - 2.13...\frac{n}{ln(n)}
+\end{align}
+
+\paragraph{Faktorisieren mit Methode von Fermat}
+
+\begin{align*}
+n = p*n = (\frac{p+q}{2})^2 -  (\frac{p-q}{2})^2 = x^2 -y^2 = (x-y)(x+y)\\
+y^2 = x^2 - n \quad \textrm{How to:}\\
+k = \lceil \sqrt n \rceil \to \sqrt n = \sqrt{p*q} \to \textrm{geometrisches Mittel}; x=k \\
+x^2-n \quad \text{Quadratzahl? endet sie auf $2,3,7$ oder $8$, dann sicher keine Quadratzahl, sonst} \sqrt{x^2-n} \\
+\text{Es ist eine Quadratzahl $\to$ wir sind fertig} n = (x-y)(x+y)  \quad  
+\text{Es ist keine Quadratzahl $\to k \mathrel{{+}{=}} 1$}
+\end{align*}
+x ist das letzte $k$, y wird berechnet via k++, danach noch p und q
+
+\paragraph{Pollards (y-1) Methode}
+
+p = Prim, b = Basis mit ggT(b,y) = 1. dann gilt: $b^{y-1}\equiv 1 \mod p$.
+Einer der beiden Primfaktoren muss in lauter kleine Primfaktoren zerfallen. Sei M eine Zahl mit folgenden Eigentschaften:
+1. $p-1 \mid M$ (p-1 ist ein Teiler von M)
+2. $M \nmid p-1$ (M ist kein Teiler von p-1)
+
+Sei b eine Basis mit $ggT(b, n) =1$.
+M waehlen: $k!$ oder $kgv(1,2,3,...,k)$
+\begin{align}
+b^M - 1 \to [b^M - 1 \mod n] = [b^M \mod n ]-1 \to d := ggT([b^M \mod n ]-1, n)\\
+ d =
+   \begin{cases}
+     1 & b^M \not\equiv 1 \mod p \land b^M \not\equiv 1 \mod q \quad \text{M groesser waehlen} \\
+     n & b^M \equiv 1 \mod p \land b^M \equiv 1 \mod q \quad\text{Basis b wechseln oder M kleiner waehlen} \\
+     p & b^M \equiv 1 \mod p \land b^M \not\equiv 1 \mod q \\
+     q & b^M \not\equiv 1 \mod p \land b^M \equiv 1 \mod q 
+   \end{cases}
+\end{align}
+
+\paragraph{Ordnung eines Elementes in einer zyklischen Gruppe (G, *) $\Z^*_n$}
+
+Alle Teiler in $\N$ sind mögliche Ordnungen der Elemente.
+Ein Generator der Gruppe ist ein Element, wenn es dieselbe Ordnung besitzt wie die Gruppe. 
+Mit dem Generator kann die gesamte Gruppe erzeugt werden. $g^{Teiler der Gruppe n-1}, g^{x}, ... g^{n-1}$, wobei $g^{n-1} = 1 \mod n$ ist, wenn es ein Generator der Gruppe ist.
+Kommutativ $\to$ a, b sind Elemente der Gruppe, g ein Generator: $a * b = g^m * g^m = g^{m+n} = g^{n + m} = g^n * g^m = b * a$. Operation ist assoziativ $(a * b) * c= a *(b*c)$
+Es existiert ein Neutralelement $a*e = e*a = a$
+Zu jedem Element existiert ein Inverses, sodass: $a * a^{-1} = a^{-1}*a = e$
+
+
+\paragraph{Babystep Giantstep Algorithmus}
+$y = g^x$ gesucht ist $x$, y, g und p (Gruppenordnung) sind gegeben.
+$Q = \lceil \sqrt{p-1=N} \rceil$ Q ist also die kleinste natürliche Zahl mit $Q^2 \geq N$\\
+$x = k*Q-l$ wobei  $ 1 \geq k \geq Q \quad 0 \geq l \geq Q-1$ \quad $y = g^{k*Q-l} \to g^{k*Q}=g^l*y$\\
+Babystep Liste: $\{ [y*g^l \mod p ]: l = \{0, 1, 2,..., Q-1\}\}$ ACHTUNG 0\\
+Giantstep Liste: $\{ [g^{k*Q} \mod p ]: k = \{1, 2, 3,..., Q\}\}$ ACHTUNG 1\\
+Die Babystep Liste wird sortiert nach Resultat (Resultat, Index).\\
+In Giantstep Liste suchen nach vorkommen eines Babystep Elementes.
+$k = x \to g^{x*Q} \mod p =$ (Resultat, Index (Babystep Liste)), dann sind k und l klar. $\to$ x = k * Q - l
+
+\paragraph{DH Keyexchange}
+Public: $g$ und $p$ \quad 
+Alice bestimmt Zufallszahl $a \in \{1,2,3,..., p-1\}$  und publiziert $[A:=g^a \mod p]$ \quad 
+Bob tut dasselbe f\"ur $[B:=g^b \mod p]$\\
+Beide k\"onnen den geheimen Schl\"ussel $k$ berechnen mit: $A^b = B^a = g^{a*b} \mod p = k$\\
+F\"ur Elliptische Kurven (gegeben a, b, p): Basispunkt $B = (x_1, y_1)$; Alice nimmt Zufallszahl $k_a$,  Bob $k_b$.
+Alice rechnet $k_a * B = (x_1, y_1) * k_a \to \alpha \equiv (3x_1^2 + a)(2y_1)^{-1} \quad x_3 \equiv \alpha^2 - 2x_1 \quad y_3 = \alpha(x_1-x_3)-y_1$ Task von Alice, dasselbe für Bob, publiziert wird dann jeweils $n*B$ = pk (n* addierter Basispunkt).\\
+Sessionkey = $(n*B) * k_x$ (erneut Punktaddition)
+
+\paragraph{El Gamal}
+Public: $g$ und $p$ \quad 
+Schlüsselerzeugung: Zufallszahl $a$ in der Menge $[1,2,3,...p-1]$ w\"ahlen (sk) $A:=g^a \mod p$ ist pk \quad
+Alice will eine Nachricht m an Bob senden.\\
+B = pk von Bob. Randomanteil: $R=[g^r \mod p] \quad r \in \{1,2,3,...,p-1\}$\\
+$c = m*B^R \mod p$, sie schickt das Tupel $(R, c)$ an Bob. Bob dechiffriert folgendermassen:\\
+$R^b = g^{k*b} \mod p \to B^k = g^{kb}$ \quad
+Aus c kann er anhand von $g^{(kb)^{-1}} $ $m$ berechnen. $g^{(kb)^{-1}} * c \mod p = m$
+Elliptische Kurven: Alice an Bob, $B=(x, y)$, $PK_b=b*B$ und $p$ sind public. Nachricht = $P_m=(m,y einsetzen)$\\
+Alice nimmt Zufallszahl k und schickt $(k*B, P_m+k(PK_b))$
+Bob seinerseits muss folgendes machen: $P_m+k(PK_b) - b(k*B)$ Subtraktion $b * kB$ was er erhalten hat.
+
+
+\paragraph{Elliptische Kurven}
+$y^2 = x^3 + a*x + b$ Alle Punkte auf dieser Kurve. Hinzu kommt ein Punkt im Unendlichen $\sigma$.
+1.) $P=\sigma : -P = \sigma$
+2.) $P= (x,y) \neq \sigma : -P = (x, -y)$\\
+Addition zweier Punkte $P_1=(x_1, y_1)$ und $P_2=(x_2, y_2)$ $P_1 \land P_2 \neq \sigma \quad x_1 \neq x_2 $
+\begin{align*}
+P_1 + P_2 = P_3 (x_3, y_3) \quad \alpha = \frac{y_2 - y_1}{x_2-x_1} = (y_2-y_1)(x_2-x_1)^{-1} \mod p
+   \begin{cases}
+     x_3 = \alpha^2 -x_1 - x_2\\
+     y_3 = \alpha(x_1-x_3) - y_1
+   \end{cases}\\
+P_1 + P_2 = \sigma \quad x_1 = x_2 \land y_1 \neq y_2  \quad \quad 
+P_1=P_2 \land y_1 = 0 \to P_1+P_2 = \sigma\\
+P_1=P_2 \land y_1 \neq 0 
+   \begin{cases}
+     x_3 = \alpha^2 -2x_1 \mod p\\
+     y_3 = \alpha(x_1-x_3) - y_1 \mod p\\
+     \alpha = (3x_1^2+a)(2y_1)^{-1}
+   \end{cases}
+\end{align*}
+
+\paragraph{Quadratische Reste}
+p = Prim und $a \in F_p$; $x^2 \mod p$ ist ein quadratischer Rest wenn $x^2 \equiv a \mod p$\\
+Die h\"alfte der Elemente des Fields sind quad. Reste resp. quad-nicht-Reste.
+\begin{align}
+a^{\frac{p-1}{2}}
+   \begin{cases}
+1 \mod p & \text{a quad Rest mod p}\\
+-1 \mod p & \text{a quad Nicht-Rest mod p}
+   \end{cases}
+\end{align}
+Ist $a \in F_p$ ein quad. Rest, dann gilt f\"ur die Wurzel: $r_1=a^{\frac{p+1}{4}}$ falls $p \equiv 3 \mod 4$ und $r_2 = p-r_1$
+
+\end{document}
